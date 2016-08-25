@@ -1,0 +1,19 @@
+[package]
+name    = "ws281x"
+version = "0.1.0"
+
+authors = ["meh. <meh@schizofreni.co>"]
+license = "WTFPL"
+
+description = "Bindings and wrapper for rpi-ws281x."
+repository  = "https://github.com/meh/rust-ws281x"
+keywords    = ["led", "rpi", "raspberry"]
+
+build = "build.rs"
+links = "ws281x"
+
+[dependencies]
+libc = "0.2"
+
+[build-dependencies]
+gcc = "0.3"
