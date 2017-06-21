@@ -12,7 +12,7 @@
 //
 //  0. You just DO WHAT THE FUCK YOU WANT TO.
 
-use libc::{c_void, c_char, c_int, uint32_t};
+use libc::{c_void, c_char, c_int, uint32_t, uint8_t, uint64_t};
 
 pub const RPI_PWM_CHANNELS: usize = 2;
 
@@ -137,14 +137,19 @@ pub struct ws2811_channel_t {
 	pub gpionum: c_int,
 	pub invert: c_int,
 	pub count: c_int,
-	pub brightness: c_int,
 	pub strip_type: c_int,
 	pub leds: *mut ws2811_led_t,
+	pub brightness: uint8_t,
+	pub wshift: uint8_t,
+	pub rshift: uint8_t,
+	pub gshift: uint8_t,
+	pub bshift: uint8_t,
 }
 
 #[derive(Debug)]
 #[repr(C)]
 pub struct ws2811_t {
+	pub render_wait_until: uint64_t,
 	pub device: *mut ws2811_device_t,
 	pub rpi_hw: *const rpi_hw_t,
 	pub freq: uint32_t,

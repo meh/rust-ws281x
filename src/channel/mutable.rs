@@ -1,6 +1,6 @@
 use std::ops::Deref;
 use std::slice;
-use libc::c_int;
+use libc::{c_int, uint8_t};
 use {ffi, Led, Strip};
 use super::ChannelRef;
 
@@ -24,9 +24,9 @@ impl<'a> Ref<'a> {
 		}
 	}
 
-	pub fn set_brightness(&mut self, value: i32) {
+	pub fn set_brightness(&mut self, value: u8) {
 		unsafe {
-			(*self.0).brightness = value as c_int;
+			(*self.0).brightness = value as uint8_t;
 		}
 	}
 
