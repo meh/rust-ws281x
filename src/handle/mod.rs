@@ -12,6 +12,9 @@
 //
 //  0. You just DO WHAT THE FUCK YOU WANT TO.
 
+mod handle_error;
+pub use self::handle_error::HandleCreationError;
+
 mod handle;
 pub use self::handle::Handle;
 

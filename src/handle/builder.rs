@@ -16,6 +16,8 @@ use std::{mem, ptr};
 use libc::{c_int, uint32_t};
 use {ffi, Handle, Channel};
 
+use handle::handle_error::HandleCreationError;
+
 pub struct Builder(ffi::ws2811_t);
 
 impl Builder {
@@ -46,7 +48,7 @@ impl Builder {
 		self
 	}
 
-	pub fn build(&mut self) -> Result<Handle, ()> {
+	pub fn build(&mut self) -> Result<Handle, HandleCreationError> {
 		unsafe {
 			Handle::new(ptr::read(&self.0))
 		}
