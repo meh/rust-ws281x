@@ -17,13 +17,16 @@ use {ffi, ChannelRef, ChannelMut};
 /// Handle to a WS281X device.
 pub struct Handle(ffi::ws2811_t);
 
+use handle::handle_error::HandleCreationError;
+
 impl Handle {
-	pub unsafe fn new(mut value: ffi::ws2811_t) -> Result<Self, ()> {
-		if ffi::ws2811_init(&mut value) >= 0 {
+	pub unsafe fn new(mut value: ffi::ws2811_t) -> Result<Self, HandleCreationError> {
+		let status = ffi::ws2811_init(&mut value);
+		if status >= 0 {
 			Ok(Handle(value))
 		}
 		else {
-			Err(())
+			Err(HandleCreationError{code: status})
 		}
 	}
 
