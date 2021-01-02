@@ -13,7 +13,7 @@
 //  0. You just DO WHAT THE FUCK YOU WANT TO.
 
 use std::{mem, ptr};
-use libc::{c_int, uint32_t};
+use libc::{c_int};
 use {ffi, Handle, Channel};
 
 pub struct Builder(ffi::ws2811_t);
@@ -29,7 +29,7 @@ impl Builder {
 	}
 
 	pub fn frequency(&mut self, value: u32) -> &mut Self {
-		self.0.freq = value as uint32_t;
+		self.0.freq = value as u32;
 		self
 	}
 
