@@ -1,5 +1,12 @@
-extern crate gcc;
+extern crate cc;
 
 fn main() {
-	gcc::compile_library("libws281x.a", &["c/mailbox.c", "c/ws2811.c", "c/pcm.c", "c/pwm.c", "c/dma.c", "c/rpihw.c"]);
+	cc::Build::new()
+            .file("c/mailbox.c")
+            .file("c/ws2811.c")
+            .file("c/pwm.c")
+            .file("c/pcm.c")
+            .file("c/dma.c")
+            .file("c/rpihw.c")
+            .compile("libws281x.a");
 }
