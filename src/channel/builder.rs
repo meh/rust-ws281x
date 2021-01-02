@@ -41,8 +41,8 @@ impl Builder {
 		self
 	}
 
-	pub fn brightness(&mut self, value: i32) -> &mut Self {
-		self.0.brightness = value as c_int;
+	pub fn brightness(&mut self, value: u8) -> &mut Self {
+		self.0.brightness = value;
 		self
 	}
 
